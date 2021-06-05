@@ -1,26 +1,30 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="app">
+        <h1>Memo Tracker</h1>
+        <AddMemo />
+        <Memos />
+    </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Memos from "./components/Memos";
+import AddMemo from "./components/AddMemo";
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+    name: "App",
+    components: {
+        Memos,
+        AddMemo,
+    },
+};
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+    font-family: Montserrat, Helvetica, Arial, sans-serif;
+    color: #2c3e50;
+    display: flex;
+    flex-direction: column;
+    margin: 0 30%;
 }
 </style>
