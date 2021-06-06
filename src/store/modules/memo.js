@@ -40,6 +40,15 @@ const actions = {
 
         if (response.status == 200) commit("removeMemo", id);
     },
+    async postMemo({ commit }, memo) {
+        const response = await axios.put(`${API_URL}/memoID/${memo.id}`, {
+            user: memo.user,
+            title: memo.title,
+            content: memo.content,
+        });
+
+        if (response.status == 200) commit("updateMemo", memo);
+    },
 };
 
 // a bunch of setters
@@ -47,6 +56,12 @@ const mutations = {
     setMemos: (state, memos) => (state.memos = memos),
     newMemo: (state, memo) => state.memos.unshift(memo),
     removeMemo: (state, id) => (state.memos = state.memos.filter((memo) => memo.id !== id)),
+    updateMemo: (state, memo) => {
+        state.memos = state.memos.map((m) => {
+            if (m.id === memo.id) return memo;
+            return m;
+        });
+    },
 };
 
 export default {

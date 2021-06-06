@@ -3,14 +3,14 @@
         <h3>Filter & Options</h3>
         <div class="filter">
             <input type="text" v-model="filteredUser" placeholder="Filter user" />
-            <button @click="onClick">Sort by {{ sortByLatest ? "oldest" : "latest" }}</button>
+            <button class="btn" @click="onClick">
+                Sort by {{ sortByLatest ? "oldest" : "latest" }}
+            </button>
         </div>
         <h3>All Memos</h3>
-        <div class="memoView">
-            <div v-for="memo in memoView" :key="memo.id">
-                <div class="bar"></div>
-                <Memo @refresh-memo="refreshMemo" :memo="memo" />
-            </div>
+        <div v-for="memo in memoView" :key="memo.id">
+            <div class="bar"></div>
+            <Memo @refresh-memo="refreshMemo" :memo="memo" />
         </div>
     </div>
 </template>
@@ -24,6 +24,7 @@ export default {
     methods: {
         ...mapActions(["fetchMemos"]),
         refreshMemo() {
+            // sync memo view with memo storage
             this.memoView = this.getFilteredMemos;
         },
         onClick(e) {
@@ -67,5 +68,9 @@ export default {
     height: 2px;
     margin: 5px 0;
     background: rgb(70, 70, 70);
+}
+
+.btn {
+    font-family: inherit;
 }
 </style>
