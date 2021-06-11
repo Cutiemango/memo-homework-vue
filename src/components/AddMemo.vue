@@ -18,7 +18,7 @@
 
             <div class="button">
                 <button @click="onClick">
-                    Submit
+                    SUBMIT
                 </button>
             </div>
         </div>
@@ -88,6 +88,7 @@ export default {
             border-bottom: 2px solid rgb(193, 193, 193);
             box-sizing: border-box;
             font-family: inherit;
+            transition: border 0.5s ease-in-out;
 
             &:focus,
             &:hover {
@@ -107,6 +108,7 @@ export default {
             box-sizing: border-box;
             padding: 6px;
             overflow: hidden;
+            transition: border 0.5s ease-in-out;
 
             &:focus,
             &:hover {
@@ -121,6 +123,58 @@ export default {
 
     .button {
         text-align: center;
+
+        button {
+            position: relative;
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: 500;
+
+            padding: 8px 16px;
+            margin: 8px;
+            border: 0;
+            border-radius: 6px;
+            cursor: pointer;
+
+            &:hover {
+                background: rgb(150, 150, 150);
+                transition: background-color 0.25s ease-in-out, transform 0.25s ease-in-out;
+                transform: scale(1.2);
+            }
+
+            &::before,
+            &::after {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                right: 0;
+                left: 0;
+                border-radius: 6px;
+            }
+
+            &::before {
+                content: "";
+                place-items: center;
+                display: grid;
+                z-index: 10;
+            }
+            &::after {
+                content: "";
+                z-index: 1;
+                background: #b1b0b0;
+                animation: pulse 1000ms infinite;
+            }
+        }
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.75;
+            }
+            100% {
+                transform: scale(1.2);
+                opacity: 0;
+            }
+        }
     }
 }
 </style>

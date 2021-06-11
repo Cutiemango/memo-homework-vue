@@ -43,7 +43,7 @@ export default {
         },
     },
     watch: {
-        filteredUser: function() {
+        filteredUser() {
             // no arrow function here: it will break 'this' scope
             this.refreshMemo();
         },
